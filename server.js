@@ -24,34 +24,8 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true })) //accept all types of input, including img uploading 
 app.use(cookieParser())
 
-//create javascript object with datas to store
-let datatosave = {
-    albumName: "",
-    artist: ""
-}
-//insert data into database
-database.insert(datatosave, function(err, newDocs){
-    console.log("err:", err);
-    console.log("newDocs: ", newDocs)
-})
-
-//
-app.get('/form', (request,response)=>{
-    response.render("form.njk")
-})
-
-app.post('/submitted', (request, response)=>{
-    console.log(request.body)
-    let newAlbum = {
-        albumName: request.body.title,
-        artist: request.body.artist,
-    }
-
-    database.insert(albumName)
-    response.redirect('/')
-})
-
 //routes come after middleware, but before listen
+//handles cookie stuff, also loads home page
 app.get('/', (request, response) => {
     //if there's a cookie, don't make another one, if there isn't, make one
     if (request.cookies.visits) {
@@ -72,12 +46,41 @@ app.get('/', (request, response) => {
         })
     }
 
-    response.render('index.njk', {numVisits: request.cookies.visits}) //rendering file, taking in 2nd optional parameter which is an object
+    response.render('index.njk') //rendering file, taking in 2nd optional parameter which is an object
 
 })
 
+//route that renders the form
+app.get('/form', (request,response)=>{
+    response.render("form.njk")
+})
+
+//after form is submitted, append data into database and sends us back to home page
+app.post('/submitted', (request, response)=>{
+    console.log(request.body)
+    let newAlbum = {
+        albumName: request.body.title,
+        artist: request.body.artist,
+    }
+
+    database.insert(newAlbum)
+    response.redirect('/')
+})
+
+//render about page
 app.get('/about', (request,response) =>{
     response.render('about.njk')
+})
+
+//route to be fetched by the front end for album data loading, database search finds the id of the album clicked on. 
+app.get('/getOneAlbum', (request, response)=>{
+    let databaseSearch = {
+        _id: request.query._id
+    }
+    //renders the page (information loading done on front end) after the data has been found
+    database.findOne(databaseSearch,(err, foundData)=>{
+        response.render('index.njk',{activeAlbum: foundData})
+    })
 })
 
 //listener to start server running
