@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser')
 let app = express()
 
 //setting up database variable, storing it in external file
-let database = new nedb({filename: "data.db", autoload: true})
+let database = new nedb({ filename: "data.db", autoload: true })
 
 //setting up nunjucks template
 nunjucks.configure("views", {
@@ -46,40 +46,45 @@ app.get('/', (request, response) => {
         })
     }
 
-    response.render('index.njk') //rendering file, taking in 2nd optional parameter which is an object
+    let query = {}
+    database.find(query, (err, foundData) => {
+        response.render('index.njk', { activeAlbum: foundData }) //rendering file, taking in 2nd optional parameter which is an object, if i wanna display the cookies i can
+    })
 
 })
 
 //route that renders the form
-app.get('/form', (request,response)=>{
+app.get('/form', (request, response) => {
     response.render("form.njk")
 })
 
 //after form is submitted, append data into database and sends us back to home page
-app.post('/submitted', (request, response)=>{
+app.post('/sign', (request, response) => {
     console.log(request.body)
+
     let newAlbum = {
-        albumName: request.body.title,
-        artist: request.body.artist,
+        albumName: request.body.album,
+        artistName: request.body.artist,
     }
 
+    console.log(newAlbum)
     database.insert(newAlbum)
     response.redirect('/')
 })
 
 //render about page
-app.get('/about', (request,response) =>{
+app.get('/about', (request, response) => {
     response.render('about.njk')
 })
 
 //route to be fetched by the front end for album data loading, database search finds the id of the album clicked on. 
-app.get('/getOneAlbum', (request, response)=>{
-    let databaseSearch = {
-        _id: request.query._id
+app.get('/sign/:id', (request, response) => {
+    let query = {
+        _id: request.params._id
     }
     //renders the page (information loading done on front end) after the data has been found
-    database.findOne(databaseSearch,(err, foundData)=>{
-        response.render('index.njk',{activeAlbum: foundData})
+    database.findOne(databaseSearch, (err, foundData) => {
+        response.render('index.njk', { activeAlbum: foundData })
     })
 })
 
