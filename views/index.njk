@@ -5,5 +5,18 @@
         <section>
             Welcome to our home page <br> this is where informaion of the album would be displayed inside the home page
         </section>
+        <div class='all-content'>
+            {% for post in activeAlbum %}
+                <div
+                    class='single-album'>
+                    {# accessing properties in database object #}
+                    <span>{{ post.date }}</span>
+                    <a href='/post/{{ post._id }}'><img src='{{ post.filePath }}'> </a>
+                    <p>
+                        {{ post.dataCaption }}
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
     </body>
 </html>
