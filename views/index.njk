@@ -2,19 +2,17 @@
     {% include "header.njk" %}
     <body>
         {% include "nav.njk" %}
+
         <section>
             Welcome to our home page <br> this is where informaion of the album would be displayed inside the home page
         </section>
         <div class='all-content'>
-            {% for post in activeAlbum %}
-                <div
-                    class='single-album'>
+            {% for upload in newAlbum %}
+                <div class='single-album'>
                     {# accessing properties in database object #}
-                    <span>{{ post.date }}</span>
-                    <a href='/post/{{ post._id }}'><img src='{{ post.filePath }}'> </a>
-                    <p>
-                        {{ post.dataCaption }}
-                    </p>
+                    <span>{{upload.albumName}}</span>
+                    <p>{{upload.artistName}}</p>
+                    <a href='/sign/{{ sign._id }}'><img src='{{ sign.filePath }}'></a>
                 </div>
             {% endfor %}
         </div>
