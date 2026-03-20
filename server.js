@@ -3,6 +3,7 @@ const express = require('express')
 const nunjucks = require('nunjucks')
 let nedb = require("@seald-io/nedb")
 const cookieParser = require('cookie-parser')
+const multer = require('multer')
 
 //sets up express app
 let app = express()
@@ -16,6 +17,8 @@ nunjucks.configure("views", {
     express: app
 })
 
+//add files to public folder
+const uploadProcessor = multer({dest: 'public/uploads/'})
 //connect exp to njk
 app.set('view engine', 'njk')
 
@@ -48,7 +51,7 @@ app.get('/', (request, response) => {
 
     let query = {}
     database.find(query, (err, foundData) => {
-        response.render('index.njk', { activeAlbum: foundData }) //rendering file, taking in 2nd optional parameter which is an object, if i wanna display the cookies i can
+        response.render('index.njk', { newAlbum: foundData }) //rendering file, taking in 2nd optional parameter which is an object
     })
 
 })
@@ -59,12 +62,13 @@ app.get('/form', (request, response) => {
 })
 
 //after form is submitted, append data into database and sends us back to home page
-app.post('/sign', (request, response) => {
+app.post('/sign', uploadProcessor.single("albumImg"),(request, response) => {
     console.log(request.body)
 
     let newAlbum = {
         albumName: request.body.album,
         artistName: request.body.artist,
+        filePath: "/uploads/" + request.file.filename
     }
 
     console.log(newAlbum)
@@ -83,7 +87,7 @@ app.get('/sign/:id', (request, response) => {
         _id: request.params._id
     }
     //renders the page (information loading done on front end) after the data has been found
-    database.findOne(databaseSearch, (err, foundData) => {
+    database.findOne(query, (err, foundData) => {
         response.render('index.njk', { activeAlbum: foundData })
     })
 })
