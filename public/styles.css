@@ -1,201 +1,326 @@
+/* decorative script font from Google Fonts */
+.neonderthaw-regular {
+    font-family: "Neonderthaw", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    --bg: #050505;
+    /* main page background */
+    --panel: #121212;
+    /* dark panel color */
+    --panel-2: #1b1b1b;
+    /* slightly lighter dark panel */
+    --border: #2a2a2a;
+    /* border color */
+    --text: #f5efe8;
+    --muted: #c8b9b9;
+    --accent-red: #c11a22;
+    --accent-red-dark: #5e0207;
+    --accent-red-soft: #7f0c12;
+}
+
+/* Makes padding and borders behave more predictably. */
 * {
     box-sizing: border-box;
 }
 
+/* BODY: Styles the whole page: background, font, text color, spacing between lines. */
 body {
     margin: 0;
+    /* removes default browser margin */
     font-family: Arial, Helvetica, sans-serif;
-    background: #0f0f0f;
-    color: #f5f5f5;
+    /* main font */
+    background: var(--bg);
+    /* dark background */
+    color: var(--text);
+    /* light text */
     line-height: 1.5;
+    /* makes text easier to read */
 }
 
-/* NAV */
+/* NAVIGATION BAR: Styles the top menu bar. */
 nav {
-    background: #161616;
-    border-bottom: 1px solid #2a2a2a;
+    background: rgba(10, 10, 10, 0.95);
+    /* dark transparent bar */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    /* subtle line below nav */
     padding: 1rem 2rem;
+    /* space inside the nav */
+    position: sticky;
+    /* nav stays visible when scrolling */
+    top: 0;
+    /* sticks to top */
+    z-index: 10;
+    /* makes sure nav stays above other elements */
 }
 
+/* This styles the list inside the nav */
 nav ul {
     list-style: none;
+    /* removes bullet points */
     display: flex;
+    /* puts items in one row */
     flex-wrap: wrap;
+    /* allows wrapping on smaller screens */
     gap: 1rem;
+    /* space between links */
     margin: 0;
     padding: 0;
     align-items: center;
 }
 
-nav li {
-    margin: 0;
-}
-
+/* This styles the actual nav links */
 nav a {
-    color: #f5f5f5;
+    color: var(--text);
+    /* light text */
     text-decoration: none;
-    font-weight: 600;
-    transition: color 0.2s ease;
+    /* removes underline */
+    font-weight: 700;
+    /* bold links */
+    transition: color 0.2s ease, opacity 0.2s ease;
+    /* smooth hover effect */
 }
 
+/* Hover effect for nav links */
 nav a:hover {
-    color: #9ad0ff;
+    color: #ffffff;
+    opacity: 0.8;
 }
 
-/* WELCOME SECTION */
+/* This is the top main section with the red gradient background. */
 section {
     max-width: 1100px;
-    margin: 0 auto;
-    padding: 2rem;
+    /* limits width so it doesn't stretch too far */
+    margin: 2rem auto 0 auto;
+    /* centers section and adds top margin */
+    padding: 3rem 2rem 2rem 2rem;
+    /* inner spacing */
+    border-radius: 18px 18px 0 0;
+    /* rounded top corners */
+    background: linear-gradient(180deg,
+            #d84b4b 0%,
+            #a30d14 35%,
+            #620307 60%,
+            #130404 100%);
+    /* red gradient like album vibe */
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    /* shadow under section */
 }
+
 
 section::before {
     content: "Album Gallery";
     display: block;
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #ffffff;
+    font-family: "Neonderthaw", cursive;
+    /* decorative title font */
+    font-size: 3.4rem;
+    /* slightly smaller so it reads cleaner */
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+    color: #fff7f2;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255, 120, 120, 0.2);
 }
 
-/* ALBUM GRID */
+/* Paragraph text inside the hero section */
+section p {
+    margin: 0.35rem 0;
+    color: #f3dede;
+    /* softer warm light text */
+    max-width: 700px;
+    /* keeps text from stretching too wide */
+}
+
+/* ALBUM GRID CONTAINER: This styles the area that holds all the album cards. */
 .all-content {
     max-width: 1100px;
     margin: 0 auto 3rem auto;
-    padding: 0 2rem 2rem 2rem;
+    /* centers grid and adds bottom space */
+    padding: 2rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    /* makes a grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    /* creates responsive columns that resize automatically */
     gap: 24px;
+    /* space between cards */
+    background: linear-gradient(180deg, #260506 0%, #090909 100%);
+    /* dark red to black background */
+    border-radius: 0 0 18px 18px;
+    /* rounded bottom corners */
 }
 
+/* INDIVIDUAL ALBUM CARD: This styles each album box. */
 .single-album {
-    background: #1b1b1b;
-    border: 1px solid #2b2b2b;
-    border-radius: 14px;
+    background: linear-gradient(180deg, #222 0%, #151515 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    /* soft border */
+    border-radius: 16px;
+    /* rounded corners */
     padding: 1rem;
     text-align: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* centers content */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    /* smooth hover effects */
 }
 
+/* Hover effect for album card */
 .single-album:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    /* card lifts up slightly */
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    /* shadow gets stronger */
+    border-color: rgba(255, 255, 255, 0.12);
+    /* border becomes a bit brighter */
 }
 
+/* Makes sure links inside cards do not look like default blue links */
 .single-album a {
     text-decoration: none;
     color: inherit;
 }
 
+/* Styles the album image */
 .single-album img {
     width: 100%;
-    height: 260px;
-    object-fit: cover;
-    border-radius: 10px;
+    max-height: 320px;
+    /* prevents giant tall image */
+    object-fit: contain;
+    /* shows whole image without cutting too much */
+    border-radius: 12px;
     display: block;
-    margin-bottom: 1rem;
-    background: #2a2a2a;
+    margin: 0 auto 1rem auto;
+    background: #2b2b2b;
+    /* fallback background if image area is empty */
 }
 
 .single-album span {
     display: block;
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 0.35rem;
-    color: #ffffff;
+    font-family: "Neonderthaw", cursive;
+    /* decorative font for album title */
+    font-size: 1.7rem;
+    /* a little smaller */
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    color: #fff6f1;
 }
 
+/* Album secondary text, like artist */
 .single-album p {
     margin: 0;
-    color: #bdbdbd;
+    color: var(--muted);
     font-size: 0.95rem;
 }
 
-/* FORM PAGE */
+/* FORM PAGE: This styles the upload form area. */
 form {
     max-width: 900px;
+    /* limits form width */
     margin: 2rem auto;
+    /* centers form */
     padding: 2rem;
-    background: #1a1a1a;
-    border: 1px solid #2b2b2b;
-    border-radius: 14px;
+    background: linear-gradient(180deg, #1a1a1a 0%, #101010 100%);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
     display: flex;
+    /* places inputs in a row */
     flex-wrap: wrap;
+    /* allows wrapping on smaller screens */
     gap: 14px;
+    /* space between fields */
     align-items: center;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
 }
 
+/* Styles text inputs and file input */
 input[type="text"],
 input[type="file"] {
-    background: #101010;
-    color: #f5f5f5;
-    border: 1px solid #333;
-    border-radius: 8px;
-    padding: 0.8rem 0.9rem;
+    background: #0d0d0d;
+    color: var(--text);
+    border: 1px solid #303030;
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
     font-size: 0.95rem;
 }
 
+/* Makes text boxes stretch more nicely */
 input[type="text"] {
     min-width: 220px;
     flex: 1;
 }
 
+/* Styles buttons and submit buttons */
 button,
 input[type="submit"] {
-    background: #ffffff;
+    background: #f6f0ea;
     color: #111;
     border: none;
-    border-radius: 8px;
-    padding: 0.8rem 1.1rem;
-    font-weight: 700;
+    border-radius: 10px;
+    padding: 0.9rem 1.15rem;
+    font-weight: 800;
     cursor: pointer;
-    transition: background 0.2s ease;
+    transition: transform 0.15s ease, background 0.2s ease;
 }
 
+/* Button hover effect */
 button:hover,
 input[type="submit"]:hover {
-    background: #d9d9d9;
+    background: #ffffff;
+    transform: translateY(-1px);
 }
 
-/* GENERAL LINKS */
+/* General link color on the site */
 a {
-    color: #9ad0ff;
+    color: #f6e6e6;
 }
 
+/* Link hover effect */
 a:hover {
-    color: #c4e4ff;
+    color: #ffffff;
 }
 
-/* RESPONSIVE */
+/* MOBILE RESPONSIVE STYLES */
 @media (max-width: 768px) {
+
+    /* smaller nav padding on mobile */
     nav {
         padding: 1rem;
     }
 
+    /* hero section becomes tighter on mobile */
     section {
-        padding: 1.25rem;
+        margin: 1rem;
+        padding: 2rem 1.25rem 1.5rem 1.25rem;
     }
 
+    /* smaller title on mobile */
+    section::before {
+        font-size: 2.8rem;
+    }
+
+    /* grid becomes one column on mobile */
     .all-content {
-        padding: 0 1.25rem 1.5rem 1.25rem;
+        margin: 0 1rem 2rem 1rem;
+        padding: 1.25rem;
         grid-template-columns: 1fr;
     }
 
+    /* form stacks vertically on mobile */
     form {
-        margin: 1.25rem;
+        margin: 1rem;
         padding: 1.25rem;
         flex-direction: column;
         align-items: stretch;
     }
 
+    /* form fields and buttons fill full width on mobile */
     input[type="text"],
     input[type="file"],
     button,
     input[type="submit"] {
         width: 100%;
-    }
-
-    .single-album img {
-        height: auto;
     }
 }
