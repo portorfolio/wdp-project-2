@@ -1,9 +1,8 @@
 {% include "header.njk" %}
 <body>
-    <form method="POST" action="/sign" enctype="multipart/form-data" >
-        <input type="file" name="albumImg">
-        <input type="text" placeholder="type the artists name" name="artist">
-        <input type="text" placeholder="write the album name" name="album">
-        <input type="submit" value="post">
-    </form>
-</body>
+    <form class="form-section" method="POST" action="/sign" enctype="multipart/form-data">
+        <input class="form-img-section" type="file" name="albumImg">
+            <input class="form-text-artist-section" type="text" placeholder="type the artists name" name="artist">
+                <input class="form-text-album-section" type="text" placeholder="write the album name" name="album">
+                    <input class="form-submit" type="submit" value="post"></form>
+                </body>
