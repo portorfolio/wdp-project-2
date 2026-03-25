@@ -32,10 +32,10 @@ const innerX = gsap.quickTo(".a", "x", { ease: "power3" });
 const innerY = gsap.quickTo(".a", "y", { ease: "power3" });
 
 main.addEventListener("pointermove", (e) => {
-  outerRX(gsap.utils.interpolate(15, -15, e.y / window.innerHeight));
-  outerRY(gsap.utils.interpolate(-15, 15, e.x / window.innerWidth));
-  innerX(gsap.utils.interpolate(-30, 30, e.x / window.innerWidth));
-  innerY(gsap.utils.interpolate(-30, 30, e.y / window.innerHeight));
+  outerRX(gsap.utils.interpolate(30, -30, e.y / window.innerHeight));
+  outerRY(gsap.utils.interpolate(-30, 30, e.x / window.innerWidth));
+  innerX(gsap.utils.interpolate(-60, 60, e.x / window.innerWidth));
+  innerY(gsap.utils.interpolate(-60, 60, e.y / window.innerHeight));
 });
 
 main.addEventListener("pointerleave", (e) => {
