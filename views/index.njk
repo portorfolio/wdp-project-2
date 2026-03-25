@@ -4,17 +4,16 @@
         {% include "nav.njk" %}
 
         <section>
-            Welcome to our Home Page <br> This is where information of the album would be displayed inside the home page
+            <p>Click an album in the row above to get started!
         </section>
-        <div class='all-content'>
+        {# <div class='all-content'>
             {% for upload in newAlbum %}
                 <div class='single-album'>
-                    {# accessing properties in database object #}
                     <span>{{upload.albumName}}</span>
                     <p>{{upload.artistName}}</p>
                     <a href='/sign/{{ upload._id }}'><img src='{{ upload.filePath }}'></a>
                 </div>
             {% endfor %}
-        </div>
+        </div> #}
     </body>
 </html>

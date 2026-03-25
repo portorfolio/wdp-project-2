@@ -1,0 +1,17 @@
+<html>
+    {% include "header.njk" %}
+    <body class = "album-page" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url('{{activeAlbum.filePath}}');">
+        {% include "nav.njk" %}
+        <div class='album-info'>
+            <div class='album-title-and-artist'>
+                <h2>{{ activeAlbum.albumName }} by: {{ activeAlbum.artistName }}</h2>
+            </div>
+            <div class = "album-cover">
+            <img src='{{ activeAlbum.filePath }}'>
+            </div>
+            <div class="album-about">
+                <p>{{ activeAlbum.info }}</p>
+            </div>
+        </div>
+    </body>
+</html>

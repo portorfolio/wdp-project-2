@@ -1,9 +1,9 @@
-/* decorative script font from Google Fonts */
-.neonderthaw-regular {
-    font-family: "Neonderthaw", cursive;
-    font-weight: 400;
-    font-style: normal;
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
+
 
 :root {
     --bg: #050505;
@@ -54,6 +54,9 @@ nav {
     /* sticks to top */
     z-index: 10;
     /* makes sure nav stays above other elements */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
 }
 
 /* This styles the list inside the nav */
@@ -62,7 +65,7 @@ nav ul {
     /* removes bullet points */
     display: flex;
     /* puts items in one row */
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     /* allows wrapping on smaller screens */
     gap: 1rem;
     /* space between links */
@@ -89,6 +92,50 @@ nav a:hover {
     opacity: 0.8;
 }
 
+nav img{
+    width: 150px;
+    border: 1px solid white;
+}
+
+nav .important-buttons{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-items: flex-start;
+    padding-right: 2rem;
+}
+
+.album-info{
+    padding-left: 20px ;
+    padding-right:20px;
+    border: 1px white solid;
+}
+
+.album-info img{
+    width: 320px;
+    border: 2px rgb(255, 255, 255) solid
+}
+
+.album-page{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.album-title-and-artist, .album-about{
+    background-color: rgb(0, 0, 0);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+
+p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    white-space: pre-wrap;
+}
 /* This is the top main section with the red gradient background. */
 section {
     max-width: 1100px;
@@ -113,7 +160,7 @@ section {
 section::before {
     content: "Album Gallery";
     display: block;
-    font-family: "Neonderthaw", cursive;
+    font-family: "Bebas Neue", sans-serif;
     /* decorative title font */
     font-size: 3.4rem;
     /* slightly smaller so it reads cleaner */
@@ -198,7 +245,7 @@ section p {
 
 .single-album span {
     display: block;
-    font-family: "Neonderthaw", cursive;
+    font-family: "Bebas Neue", sans-serif;
     /* decorative font for album title */
     font-size: 1.7rem;
     /* a little smaller */
@@ -237,7 +284,8 @@ form {
 
 /* Styles text inputs and file input */
 input[type="text"],
-input[type="file"] {
+input[type="file"],
+textarea {
     background: #0d0d0d;
     color: var(--text);
     border: 1px solid #303030;
