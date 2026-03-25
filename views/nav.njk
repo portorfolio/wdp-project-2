@@ -15,7 +15,7 @@
             <a href='/form'>Form</a>
             {% for upload in newAlbum %}
                 <a href='/sign/{{ upload._id }}'>
-                    <img src='{{ upload.filePath }}'></a>
+                    <img class="album_cover" src='{{ upload.filePath }}'></a>
                 {% endfor %}
             </li>
         </ul>
