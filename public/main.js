@@ -15,3 +15,7 @@ press(".album_c", (element) => {
   return () =>
     animate(element, { scale: 1 }, { type: "spring", stiffness: 500 });
 });
+document.addEventListener("DOMContentLoaded", (event) => {
+  gsap.registerPlugin(ScrambleTextPlugin, SplitText);
+  // gsap code here!
+});
