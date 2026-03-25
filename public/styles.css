@@ -372,3 +372,38 @@ a:hover {
         width: 100%;
     }
 }
+
+
+/*Credits Page Selectors*/
+.credits-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -7px;
+}
+
+.hr-line{
+    margin-top: 30px;
+    width: 30%;
+    opacity: 30%;
+}
+
+.credit-text{
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.credit-1,.credit-2,.credit-3{
+    font-size: 15px;
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+.credit-1:hover,.credit-2:hover,.credit-3:hover{
+    text-decoration: underline;
+}
+
+
+
+
+
