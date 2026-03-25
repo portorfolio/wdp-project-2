@@ -1,27 +1,22 @@
 <nav>
-    <ul class="nav-bar-area">
-        <li class="nav-home">
+    <ul class="important-buttons">
+        <li>
             <a href='/'>Home</a>
         </li>
-        <li class="nav-album-1">
-            <a>Album 1</a>
-        </li>
-        <li class="nav-album-2">
-            <a>Album 2</a>
-        </li>
-        <li class="nav-album-3">
-            <a>Album 3</a>
-        </li>
-        <li class="nav-album-4">
-            <a>Album 4</a>
-        </li>
-        <li class="nav-album-5">
-            <a>Album 5</a>
-        </li>
-        <li class="nav-album-6">
-            <a>Album 6</a>
-        </li>
-        <li class="nav-form">
+        <li>
             <a href='/form'>Form</a>
+        </li>
+        <li>
+            <a href='/about'>About</a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href='/form'>Form</a>
+            {% for upload in newAlbum %}
+                <a href='/sign/{{ upload._id }}'>
+                    <img src='{{ upload.filePath }}'></a>
+                {% endfor %}
+            </li>
         </ul>
     </nav>

@@ -9,7 +9,7 @@ const multer = require('multer')
 let app = express()
 
 //setting up database variable, storing it in external file
-let database = new nedb({ filename: "data.db", autoload: true })
+const database = new nedb({ filename: "data.db", autoload: true })
 
 //setting up nunjucks template
 nunjucks.configure("views", {
@@ -18,7 +18,7 @@ nunjucks.configure("views", {
 })
 
 //add files to public folder
-const uploadProcessor = multer({dest: 'public/uploads/'})
+const uploadProcessor = multer({ dest: 'public/uploads/' })
 //connect exp to njk
 app.set('view engine', 'njk')
 
@@ -58,37 +58,44 @@ app.get('/', (request, response) => {
 
 //route that renders the form
 app.get('/form', (request, response) => {
-    response.render("form.njk")
+    database.find({}, (err, allData) => {
+        response.render('form.njk', { newAlbum: allData })
+    })
 })
 
 //after form is submitted, append data into database and sends us back to home page
-app.post('/sign', uploadProcessor.single("albumImg"),(request, response) => {
+app.post('/sign', uploadProcessor.single("albumImg"), (request, response) => {
     console.log(request.body)
 
     let newAlbum = {
         albumName: request.body.album,
         artistName: request.body.artist,
+        info: request.body.info,
         filePath: "/uploads/" + request.file.filename
     }
 
     console.log(newAlbum)
     database.insert(newAlbum)
-    response.redirect('/')
-})
-
-//render about page
-app.get('/about', (request, response) => {
-    response.render('about.njk')
+    response.redirect('/form')
 })
 
 //route to be fetched by the front end for album data loading, database search finds the id of the album clicked on. 
 app.get('/sign/:id', (request, response) => {
     let query = {
-        _id: request.params._id
+        _id: request.params.id
     }
     //renders the page (information loading done on front end) after the data has been found
     database.findOne(query, (err, foundData) => {
-        response.render('index.njk', { activeAlbum: foundData })
+        database.find({}, (err, allData) => {
+            response.render('album.njk', { activeAlbum: foundData, newAlbum: allData })
+        })
+    })
+})
+
+//render about page
+app.get('/about', (request, response) => {
+    database.find({}, (err, allData) => {
+        response.render('about.njk', { newAlbum: allData })
     })
 })
 
