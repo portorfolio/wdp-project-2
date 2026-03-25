@@ -1,409 +1,619 @@
+/* GOOGLE FONT CLASS: This class lets us use the Bebas Neue font anywhere we want. */
 .bebas-neue-regular {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Bebas Neue", sans-serif;
+    /* sets Bebas Neue as the main font */
+    font-weight: 400;
+    font-style: normal;
+    /* normal style, not italic */
 }
 
-
+/* ROOT VARIABLES: These are reusable colors for the whole site. */
 :root {
     --bg: #050505;
-    /* main page background */
+    /* main page background color */
     --panel: #121212;
     /* dark panel color */
     --panel-2: #1b1b1b;
-    /* slightly lighter dark panel */
+    /* slightly lighter panel color */
     --border: #2a2a2a;
-    /* border color */
+    /* general border color */
     --text: #f5efe8;
     --muted: #c8b9b9;
+    /* softer text color for secondary text */
     --accent-red: #c11a22;
     --accent-red-dark: #5e0207;
     --accent-red-soft: #7f0c12;
 }
 
-/* Makes padding and borders behave more predictably. */
+/* Makes padding and borders easier to control. */
 * {
     box-sizing: border-box;
+    /* includes padding and border inside the width/height */
 }
 
-/* BODY: Styles the whole page: background, font, text color, spacing between lines. */
+/* BODY: Styles the whole page background and text. */
 body {
     margin: 0;
     /* removes default browser margin */
     font-family: Arial, Helvetica, sans-serif;
-    /* main font */
+    /* sets the main body font */
     background: var(--bg);
-    /* dark background */
+    /* uses the dark background variable */
     color: var(--text);
-    /* light text */
+    /* uses the main text color */
     line-height: 1.5;
-    /* makes text easier to read */
+    /* adds more space between lines for readability */
 }
 
-/* NAVIGATION BAR: Styles the top menu bar. */
-nav {
-    background: rgba(10, 10, 10, 0.95);
-    /* dark transparent bar */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    /* subtle line below nav */
-    padding: 1rem 2rem;
-    /* space inside the nav */
-    position: sticky;
-    /* nav stays visible when scrolling */
-    top: 0;
-    /* sticks to top */
-    z-index: 10;
-    /* makes sure nav stays above other elements */
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-}
-
-/* This styles the list inside the nav */
-nav ul {
-    list-style: none;
-    /* removes bullet points */
-    display: flex;
-    /* puts items in one row */
-    /* flex-wrap: wrap; */
-    /* allows wrapping on smaller screens */
-    gap: 1rem;
-    /* space between links */
-    margin: 0;
-    padding: 0;
-    align-items: center;
-}
-
-/* This styles the actual nav links */
-nav a {
-    color: var(--text);
-    /* light text */
-    text-decoration: none;
-    /* removes underline */
-    font-weight: 700;
-    /* bold links */
-    transition: color 0.2s ease, opacity 0.2s ease;
-    /* smooth hover effect */
-}
-
-/* Hover effect for nav links */
-nav a:hover {
-    color: #ffffff;
-    opacity: 0.8;
-}
-
-nav img{
-    width: 150px;
-    border: 1px solid white;
-}
-
-nav .important-buttons{
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    align-items: flex-start;
-    padding-right: 2rem;
-}
-
-.album-info{
-    padding-left: 20px ;
-    padding-right:20px;
-    border: 1px white solid;
-}
-
-.album-info img{
-    width: 320px;
-    border: 2px rgb(255, 255, 255) solid
-}
-
-.album-page{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.album-title-and-artist, .album-about{
-    background-color: rgb(0, 0, 0);
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 1px;
-    padding-bottom: 1px;
-}
-
-
-p{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    white-space: pre-wrap;
-}
-/* This is the top main section with the red gradient background. */
-section {
-    max-width: 1100px;
-    /* limits width so it doesn't stretch too far */
-    margin: 2rem auto 0 auto;
-    /* centers section and adds top margin */
-    padding: 3rem 2rem 2rem 2rem;
-    /* inner spacing */
-    border-radius: 18px 18px 0 0;
-    /* rounded top corners */
-    background: linear-gradient(180deg,
-            #d84b4b 0%,
-            #a30d14 35%,
-            #620307 60%,
-            #130404 100%);
-    /* red gradient like album vibe */
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
-    /* shadow under section */
-}
-
-
-section::before {
-    content: "Album Gallery";
+/* Makes images behave better by default */
+img {
     display: block;
-    font-family: "Bebas Neue", sans-serif;
-    /* decorative title font */
-    font-size: 3.4rem;
-    /* slightly smaller so it reads cleaner */
-    font-weight: 400;
-    line-height: 1.1;
-    margin-bottom: 1.2rem;
-    color: #fff7f2;
-    letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(255, 120, 120, 0.2);
+    /* removes extra space under images */
+    max-width: 100%;
+    /* prevents images from overflowing their container */
 }
 
-/* Paragraph text inside the hero section */
-section p {
-    margin: 0.35rem 0;
-    color: #f3dede;
-    /* softer warm light text */
-    max-width: 700px;
-    /* keeps text from stretching too wide */
-}
-
-/* ALBUM GRID CONTAINER: This styles the area that holds all the album cards. */
-.all-content {
-    max-width: 1100px;
-    margin: 0 auto 3rem auto;
-    /* centers grid and adds bottom space */
-    padding: 2rem;
-    display: grid;
-    /* makes a grid layout */
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    /* creates responsive columns that resize automatically */
-    gap: 24px;
-    /* space between cards */
-    background: linear-gradient(180deg, #260506 0%, #090909 100%);
-    /* dark red to black background */
-    border-radius: 0 0 18px 18px;
-    /* rounded bottom corners */
-}
-
-/* INDIVIDUAL ALBUM CARD: This styles each album box. */
-.single-album {
-    background: linear-gradient(180deg, #222 0%, #151515 100%);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    /* soft border */
-    border-radius: 16px;
-    /* rounded corners */
-    padding: 1rem;
-    text-align: center;
-    /* centers content */
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    /* smooth hover effects */
-}
-
-/* Hover effect for album card */
-.single-album:hover {
-    transform: translateY(-4px);
-    /* card lifts up slightly */
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
-    /* shadow gets stronger */
-    border-color: rgba(255, 255, 255, 0.12);
-    /* border becomes a bit brighter */
-}
-
-/* Makes sure links inside cards do not look like default blue links */
-.single-album a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* Styles the album image */
-.single-album img {
-    width: 100%;
-    max-height: 320px;
-    /* prevents giant tall image */
-    object-fit: contain;
-    /* shows whole image without cutting too much */
-    border-radius: 12px;
-    display: block;
-    margin: 0 auto 1rem auto;
-    background: #2b2b2b;
-    /* fallback background if image area is empty */
-}
-
-.single-album span {
-    display: block;
-    font-family: "Bebas Neue", sans-serif;
-    /* decorative font for album title */
-    font-size: 1.7rem;
-    /* a little smaller */
-    font-weight: 400;
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
-    color: #fff6f1;
-}
-
-/* Album secondary text, like artist */
-.single-album p {
-    margin: 0;
-    color: var(--muted);
-    font-size: 0.95rem;
-}
-
-/* FORM PAGE: This styles the upload form area. */
-form {
-    max-width: 900px;
-    /* limits form width */
-    margin: 2rem auto;
-    /* centers form */
-    padding: 2rem;
-    background: linear-gradient(180deg, #1a1a1a 0%, #101010 100%);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 16px;
-    display: flex;
-    /* places inputs in a row */
-    flex-wrap: wrap;
-    /* allows wrapping on smaller screens */
-    gap: 14px;
-    /* space between fields */
-    align-items: center;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
-}
-
-/* Styles text inputs and file input */
-input[type="text"],
-input[type="file"],
-textarea {
-    background: #0d0d0d;
-    color: var(--text);
-    border: 1px solid #303030;
-    border-radius: 10px;
-    padding: 0.9rem 1rem;
-    font-size: 0.95rem;
-}
-
-/* Makes text boxes stretch more nicely */
-input[type="text"] {
-    min-width: 220px;
-    flex: 1;
-}
-
-/* Styles buttons and submit buttons */
-button,
-input[type="submit"] {
-    background: #f6f0ea;
-    color: #111;
-    border: none;
-    border-radius: 10px;
-    padding: 0.9rem 1.15rem;
-    font-weight: 800;
-    cursor: pointer;
-    transition: transform 0.15s ease, background 0.2s ease;
-}
-
-/* Button hover effect */
-button:hover,
-input[type="submit"]:hover {
-    background: #ffffff;
-    transform: translateY(-1px);
-}
-
-/* General link color on the site */
+/* General link style */
 a {
     color: #f6e6e6;
+    /* light warm link color */
+    text-decoration: none;
+    /* removes the underline */
 }
 
 /* Link hover effect */
 a:hover {
     color: #ffffff;
+    /* makes links brighter on hover */
 }
 
-/* MOBILE RESPONSIVE STYLES */
-@media (max-width: 768px) {
-
-    /* smaller nav padding on mobile */
-    nav {
-        padding: 1rem;
-    }
-
-    /* hero section becomes tighter on mobile */
-    section {
-        margin: 1rem;
-        padding: 2rem 1.25rem 1.5rem 1.25rem;
-    }
-
-    /* smaller title on mobile */
-    section::before {
-        font-size: 2.8rem;
-    }
-
-    /* grid becomes one column on mobile */
-    .all-content {
-        margin: 0 1rem 2rem 1rem;
-        padding: 1.25rem;
-        grid-template-columns: 1fr;
-    }
-
-    /* form stacks vertically on mobile */
-    form {
-        margin: 1rem;
-        padding: 1.25rem;
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    /* form fields and buttons fill full width on mobile */
-    input[type="text"],
-    input[type="file"],
-    button,
-    input[type="submit"] {
-        width: 100%;
-    }
+/* General paragraph style */
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    /* keeps normal text readable */
+    font-size: 1rem;
+    /* standard paragraph size */
+    margin: 0 0 1rem 0;
+    /* adds space below paragraphs */
 }
 
+/* NAVIGATION: This is the top navigation area with menu plus album covers. */
+nav {
+    width: min(1280px, calc(100% - 48px));
+    /* keeps nav wide but still leaves space on both sides */
+    margin: 1.25rem auto 0 auto;
+    /* centers nav and adds space on top */
+    background: #090909;
+    /* very dark background */
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    /* subtle border */
+    border-radius: 18px;
+    /* rounded corners */
+    padding: 1.25rem;
+    /* inner spacing */
+    display: grid;
+    /* uses grid layout */
+    grid-template-columns: 120px 1fr;
+    /* first column for menu, second for album covers */
+    gap: 1.25rem;
+    /* space between menu and album covers */
+    align-items: start;
+    /* aligns content to the top */
+    overflow: hidden;
+    /* hides anything that sticks outside the nav box */
+    position: relative;
+    /* helps with stacking and positioning */
+    z-index: 10;
+    /* keeps nav above other content */
+}
 
-/*Credits Page Selectors*/
-.credits-section{
+/* Left side menu list */
+nav .important-buttons {
+    list-style: none;
+    /* removes bullet points */
     display: flex;
-    justify-content: center;
+    /* uses flexbox */
+    flex-direction: column;
+    /* stacks links vertically */
+    gap: 1rem;
+    /* space between menu items */
+    margin: 0;
+    /* removes default margin */
+    padding: 0;
+    /* removes default padding */
+    align-items: flex-start;
+    /* aligns links to the left */
+}
+
+/* Left-side menu links */
+nav .important-buttons a {
+    color: var(--text);
+    /* light text color */
+    font-weight: 700;
+    /* makes menu text bold */
+    font-size: 1rem;
+    /* standard menu size */
+}
+
+/* Right side album cover list */
+nav .album-strip {
+    list-style: none;
+    /* removes bullets */
+    margin: 0;
+    /* removes margin */
+    padding: 0;
+    /* removes padding */
+    overflow-x: auto;
+    /* allows horizontal scroll if there are many covers */
+}
+
+/* Makes the album covers sit in one row */
+nav .album-strip li {
+    display: flex;
+    /* puts children in a row */
+    gap: 1rem;
+    /* adds space between covers */
     align-items: center;
-    margin-top: -7px;
+    /* vertically aligns covers */
 }
 
-.hr-line{
-    margin-top: 30px;
-    width: 30%;
-    opacity: 30%;
+/* Album cover links */
+nav .album-strip a {
+    display: block;
+    /* makes each link act like a box */
+    flex: 0 0 auto;
+    /* prevents them from shrinking oddly */
 }
 
-.credit-text{
+/* Album cover images */
+nav .album-strip img {
+    width: 150px;
+    /* fixed cover width */
+    height: 150px;
+    /* fixed cover height */
+    object-fit: cover;
+    /* fills the box nicely */
+    border: 1px solid white;
+    /* white border around covers */
+    border-radius: 10px;
+    /* rounded corners */
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    /* smooth hover animation */
+}
+
+/* Album cover hover effect */
+nav .album-strip img:hover {
+    transform: scale(1.03);
+    /* makes image slightly bigger */
+    opacity: 0.92;
+    /* makes image slightly dimmer */
+}
+
+/* MAIN SECTION: Used for home/about main red panel. */
+section {
+    width: min(1280px, calc(100% - 48px));
+    /* keeps section centered and not too wide */
+    margin: 1.5rem auto 0 auto;
+    /* centers section and adds top margin */
+    padding: 2.5rem 2rem 2rem 2rem;
+    /* space inside the section */
+    border-radius: 18px;
+    /* rounded corners */
+    background: linear-gradient(180deg,
+            #d84b4b 0%,
+            /* lighter red at the top */
+            #a30d14 35%,
+            /* medium red */
+            #620307 60%,
+            /* darker red */
+            #130404 100%
+            /* almost black at the bottom */
+        );
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    /* shadow under section */
+}
+
+/* Decorative title automatically added at the top of the section */
+section::before {
+    content: "Album Gallery";
+    /* text shown above the section content */
+    display: block;
+    /* makes it act like a block element */
+    font-family: "Bebas Neue", sans-serif;
+    /* uses decorative font */
+    font-size: 3.4rem;
+    /* makes title large */
+    font-weight: 400;
+    /* regular weight */
+    line-height: 1.1;
+    /* tighter line spacing */
+    margin-bottom: 1.2rem;
+    /* space below the title */
+    color: #fff7f2;
+    letter-spacing: 1px;
+    /* adds spacing between letters */
+}
+
+/* Section heading */
+section h1 {
+    font-size: 2rem;
+    /* makes heading large */
+    margin: 0 0 1rem 0;
+    /* adds space below heading */
+}
+
+/* Paragraphs inside the section */
+section p {
+    margin: 0.35rem 0;
+    /* light space between lines/paragraphs */
+    color: #f3dede;
+    /* softer light text */
+    max-width: 850px;
+    /* prevents text from becoming too wide */
+    line-height: 1.7;
+    /* makes text easier to read */
+}
+
+/* About page text area */
+.about-page .text-container {
+    max-width: 900px;
+    /* limits width so the text looks cleaner */
+}
+
+/* FORM: Styles the upload form page. */
+form {
+    width: min(1100px, calc(100% - 48px));
+    /* keeps form centered and controlled */
+    margin: 2rem auto;
+    /* top/bottom space and horizontal centering */
+    padding: 2rem;
+    /* space inside form */
+    background: linear-gradient(180deg, #1a1a1a 0%, #101010 100%);
+    /* dark gradient panel */
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    /* subtle border */
+    border-radius: 16px;
+    /* rounded corners */
+    display: flex;
+    /* flex layout */
+    flex-wrap: wrap;
+    /* lets inputs wrap to a new line */
+    gap: 14px;
+    /* space between form elements */
+    align-items: flex-start;
+    /* aligns items to the top */
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+    /* soft shadow */
+}
+
+/* Text input, file input, and textarea style */
+input[type="text"],
+input[type="file"],
+textarea {
+    background: #0d0d0d;
+    /* dark field background */
+    color: var(--text);
+    /* light text inside fields */
+    border: 1px solid #303030;
+    border-radius: 10px;
+    /* rounded corners */
+    padding: 0.9rem 1rem;
+    /* inside spacing */
+    font-size: 0.95rem;
+    /* readable text size */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Text inputs can grow */
+input[type="text"] {
+    min-width: 220px;
+    /* minimum width before wrapping */
+    flex: 1;
+    /* allows input to stretch */
+}
+
+/* Textarea specific styles */
+textarea {
+    min-height: 160px;
+    flex: 1 1 100%;
+    /* makes textarea take a full row if needed */
+    resize: vertical;
+    /* user can resize up/down only */
+}
+
+/* Button and submit styles */
+button,
+input[type="submit"] {
+    background: #f6f0ea;
+    /* light button background */
+    color: #111;
+    /* dark text */
+    border: none;
+    /* removes default border */
+    border-radius: 10px;
+    /* rounded corners */
+    padding: 0.9rem 1.15rem;
+    /* button spacing */
+    font-weight: 800;
+    /* bold text */
+    cursor: pointer;
+    /* cursor changes to pointer */
+    transition: transform 0.15s ease, background 0.2s ease;
+    /* smooth hover transition */
+}
+
+/* Hover effect for buttons */
+button:hover,
+input[type="submit"]:hover {
+    background: #ffffff;
+    /* brightens button */
+    transform: translateY(-1px);
+    /* lifts button slightly */
+}
+
+/* ALBUM PAGE: Styles the selected album detail page. */
+.album-page {
+    width: min(1280px, calc(100% - 48px));
+    /* keeps page centered and controlled */
+    margin: 1.5rem auto 3rem auto;
+    /* adds spacing around the album section */
+    padding: 1.5rem;
+    /* inner spacing */
+    border-radius: 18px;
+    /* rounded corners */
+    position: relative;
+    /* needed for overlay */
+    overflow: hidden;
+    /* hides overflow */
+    background-size: cover;
+    /* makes background image cover container */
+    background-repeat: no-repeat;
+    /* prevents repeating */
+    background-position: center;
+    /* centers background image */
+    isolation: isolate;
+    /* makes overlay layering cleaner */
+}
+
+/* Dark overlay over the album background image */
+.album-page::before {
+    content: "";
+    /* required for pseudo-element */
+    position: absolute;
+    /* stretches over the album page */
+    inset: 0;
+    /* top right bottom left all set to 0 */
+    background: rgba(0, 0, 0, 0.72);
+    /* dark transparent overlay */
+    z-index: 0;
+    /* keeps overlay behind actual content */
+}
+
+/* Makes the real album content appear above the overlay */
+.album-page>* {
+    position: relative;
+    /* gives content its own stacking level */
+    z-index: 1;
+    /* puts content above overlay */
+}
+
+/* Wrapper for album information */
+.album-info {
+    margin-top: 1.25rem;
+    /* space under the nav */
+}
+
+/* Title area at the top of album page */
+.album-title-and-artist {
+    background: rgba(0, 0, 0, 0.88);
+    /* dark transparent box */
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    /* subtle border */
+    border-radius: 16px;
+    /* rounded corners */
+    padding: 1rem 1.25rem;
+    /* inner spacing */
+    margin-bottom: 1.25rem;
+    /* space below title */
+}
+
+/* Album title text */
+.album-title-and-artist h2 {
+    margin: 0;
+    /* removes default heading margin */
+    font-family: "Bebas Neue", sans-serif;
+    /* uses decorative font */
+    font-size: 3rem;
+    /* big title */
+    line-height: 1.05;
+    /* tight line height */
+}
+
+/* Layout for cover + about text */
+.album-content {
+    display: grid;
+    /* uses grid layout */
+    grid-template-columns: 360px 1fr;
+    /* left column for cover, right for text */
+    gap: 1.5rem;
+    /* space between cover and text */
+    align-items: start;
+    /* aligns both items to the top */
+}
+
+/* Album cover image */
+.album-cover img {
+    width: 100%;
+    /* makes image fill its column */
+    border: 2px solid white;
+    /* white border */
+    border-radius: 14px;
+    /* rounded corners */
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+    /* shadow */
+}
+
+/* Box that holds album description */
+.album-about {
+    background: rgba(0, 0, 0, 0.88);
+    /* dark transparent box */
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    /* subtle border */
+    border-radius: 16px;
+    /* rounded corners */
+    padding: 1.25rem 1.4rem;
+    /* inner spacing */
+}
+
+/* Paragraph inside album description */
+.album-about p {
+    font-size: 1.08rem;
+    /* slightly bigger text */
+    line-height: 1.75;
+    /* more breathing room */
+    white-space: pre-wrap;
+    /* keeps line breaks from the data */
+    margin-bottom: 0;
+    /* removes bottom margin */
+}
+
+/* FOOTER / CREDITS */
+
+.site-footer {
+    margin-top: 3rem;
+    /* pushes footer lower */
+    padding-bottom: 2rem;
+    /* gives breathing room at the bottom */
+}
+
+.hr-line {
+    width: min(500px, calc(100% - 48px));
+    /* keeps line from being too wide */
+    margin: 0 auto 1rem auto;
+    /* centers line and adds space below */
+    opacity: 0.3;
+    /* softer look */
+    border: none;
+    border-top: 1px solid var(--text);
+    /* uses the site text color */
+}
+
+.credits-section {
+    display: flex;
+    /* puts everything in one row */
+    justify-content: center;
+    /* centers the whole footer */
+    align-items: center;
+    /* vertically aligns text and names */
+    gap: 0.4rem;
+    /* space between items */
+    flex-wrap: wrap;
+    /* allows wrapping on small screens */
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.credit-text,
+.credit-1,
+.credit-2,
+.credit-3 {
     font-size: 15px;
-    margin-right: 5px;
+    line-height: 1;
+    /* keeps all text aligned nicely */
+    margin: 0;
+    /* removes default spacing */
+    white-space: nowrap;
+    /* keeps each item on one line */
 }
 
-.credit-1,.credit-2,.credit-3{
-    font-size: 15px;
-    margin-right: 5px;
+.credit-1,
+.credit-2,
+.credit-3 {
     text-decoration: none;
 }
 
-.credit-1:hover,.credit-2:hover,.credit-3:hover{
+.credit-1:hover,
+.credit-2:hover,
+.credit-3:hover {
     text-decoration: underline;
 }
 
+/* MOBILE RESPONSIVE: Changes layout for smaller screens.*/
+@media (max-width: 768px) {
+    nav {
+        width: calc(100% - 24px);
+        /* reduces side margins on mobile */
+        margin: 1rem auto 0 auto;
+        /* smaller top margin */
+        grid-template-columns: 1fr;
+        /* stacks menu and covers */
+        padding: 1rem;
+        /* smaller padding */
+    }
 
+    nav .important-buttons {
+        flex-direction: row;
+        /* puts menu links in a row */
+        gap: 1.25rem;
+        /* space between links */
+        flex-wrap: wrap;
+        /* lets links wrap if needed */
+    }
 
+    nav .album-strip img {
+        width: 120px;
+        /* smaller album covers */
+        height: 120px;
+        /* smaller album covers */
+    }
 
+    section,
+    .album-page,
+    form {
+        width: calc(100% - 24px);
+        /* gives all main content smaller side margins */
+        margin-left: auto;
+        /* centers element */
+        margin-right: auto;
+        /* centers element */
+    }
 
+    section {
+        padding: 2rem 1.25rem 1.5rem 1.25rem;
+        /* smaller section padding */
+    }
+
+    section::before {
+        font-size: 2.6rem;
+        /* smaller big title */
+    }
+
+    .album-title-and-artist h2 {
+        font-size: 2rem;
+        /* smaller album title */
+    }
+
+    .album-content {
+        grid-template-columns: 1fr;
+        /* stacks cover and text vertically */
+    }
+
+    form {
+        padding: 1.25rem;
+        /* smaller form padding */
+        flex-direction: column;
+        /* stacks form items vertically */
+        align-items: stretch;
+        /* makes items fill available width */
+    }
+
+    input[type="text"],
+    input[type="file"],
+    textarea,
+    button,
+    input[type="submit"] {
+        width: 100%;
+        /* makes fields and buttons fill the width */
+    }
+}
