@@ -2,18 +2,18 @@
     {% include "header.njk" %}
     <body>
         {% include "nav.njk" %}
-
         <section>
-            <p>Click an album in the row above to get started!
+            <p>Click an album in the row above to get started!</p>
         </section>
         {# <div class='all-content'>
-            {% for upload in newAlbum %}
-                <div class='single-album'>
-                    <span>{{upload.albumName}}</span>
-                    <p>{{upload.artistName}}</p>
-                    <a href='/sign/{{ upload._id }}'><img src='{{ upload.filePath }}'></a>
-                </div>
-            {% endfor %}
-        </div> #}
+                    {% for upload in newAlbum %}
+                        <div class='single-album'>
+                            <span>{{upload.albumName}}</span>
+                            <p>{{upload.artistName}}</p>
+                            <a href='/sign/{{ upload._id }}'><img src='{{ upload.filePath }}'></a>
+                        </div>
+                    {% endfor %}
+                </div> #}
+        {% include "footer.njk" %}
     </body>
 </html>
