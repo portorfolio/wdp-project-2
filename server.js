@@ -99,6 +99,13 @@ app.get('/about', (request, response) => {
     })
 })
 
+app.get('/all-albums', (request, response)=>{
+    let query = {}
+    database.find(query, (err, foundData) => {
+        response.json({ newAlbum: foundData }) //rendering file, taking in 2nd optional parameter which is an object
+    })
+})
+
 //listener to start server running
 app.listen(7001, () => {
     console.log('http://localhost:7001')
