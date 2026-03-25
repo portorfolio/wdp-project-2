@@ -1,20 +1,20 @@
 <nav>
     <ul class="important-buttons">
         <li>
-            <a href='/'>Home</a>
+            <a href="/">Home</a>
         </li>
         <li>
-            <a href='/form'>Form</a>
+            <a href="/form">Form</a>
         </li>
         <li>
-            <a href='/about'>About</a>
+            <a href="/about">About</a>
         </li>
     </ul>
-    <ul>
+    <ul class="album-strip">
         <li>
             {% for upload in newAlbum %}
-                <a href='/sign/{{ upload._id }}'>
-                    <img class="album_c" src='{{ upload.filePath }}'></a>
+                <a href="/sign/{{ upload._id }}">
+                    <img class="album_c" src="{{ upload.filePath }}" alt="{{ upload.albumName }}"></a>
                 {% endfor %}
             </li>
         </ul>
