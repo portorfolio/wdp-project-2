@@ -1,9 +1,11 @@
 {% include "header.njk" %}
+{% include "nav.njk"%}
 <body>
     <form method="POST" action="/sign" enctype="multipart/form-data" >
         <input type="file" name="albumImg">
         <input type="text" placeholder="type the artists name" name="artist">
         <input type="text" placeholder="write the album name" name="album">
+        <textarea name = "info" placeholder="information about album and artist" rows="6" cols="30"></textarea>
         <input type="submit" value="post">
     </form>
 </body>
